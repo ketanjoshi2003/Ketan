@@ -137,6 +137,11 @@ span {
     margin: 2rem 0 3rem;
 }
 
+.about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+}
+
 .social-media a {
     display: inline-flex;
     justify-content: center;
@@ -149,7 +154,7 @@ span {
     font-size: 2rem;
     color: var(--main-color);
     margin: 3rem 1.5rem 3rem 0;
-    transition: .5s ease;
+    transition: .3s ease;
 }
 
 .social-media a:hover {
@@ -168,7 +173,7 @@ span {
     color: var(--second-bg-color);
     letter-spacing: .1rem;
     font-weight: 600;
-    transition: .5s ease;
+    transition: .3s ease;
 }
 
 .btn:hover {
@@ -264,11 +269,35 @@ span {
 
 .about-content h3 {
     font-size: 2.6rem;
+    margin: 2rem 0 3rem;
 }
 
 .about-content p {
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
+}
+
+.about-content .more-text {
+    display: none;
+    margin-top: -2rem;
+    /* Initial pull to make transition smoother if animated, but for display:none this just adjusts spacing */
+}
+
+.about-content .more-text.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Skills Section */
@@ -371,7 +400,7 @@ span {
     border-radius: 2rem;
     text-align: center;
     border: .2rem solid var(--bg-color);
-    transition: .5s ease;
+    transition: .3s ease;
 }
 
 .services-box:hover {
@@ -447,7 +476,7 @@ span {
     padding: .8rem;
     background: var(--main-color);
     border-radius: .8rem;
-    transition: .5s ease;
+    transition: .3s ease;
 }
 
 .footer-iconTop a:hover {

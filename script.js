@@ -44,7 +44,7 @@ window.onscroll = () => {
 ScrollReveal({
     reset: true,
     distance: '80px',
-    duration: 2000,
+    duration: 1000,
     delay: 200
 });
 
@@ -120,7 +120,7 @@ async function fetchGitHubProjects() {
     if (!projectContainer) return;
 
     try {
-        const response = await fetch('https://api.github.com/users/ketanjoshi2003/repos?sort=updated&per_page=3');
+        const response = await fetch('https://api.github.com/users/ketanjoshi2003/repos?sort=updated&per_page=6');
         if (!response.ok) throw new Error('Failed to fetch projects');
 
         const repos = await response.json();
@@ -162,3 +162,20 @@ async function fetchGitHubProjects() {
 }
 
 fetchGitHubProjects();
+
+/* Read More Toggle */
+const readMoreBtn = document.querySelector('.about-content .btn');
+const moreText = document.querySelector('.about-content .more-text');
+
+if (readMoreBtn && moreText) {
+    readMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moreText.classList.toggle('active');
+
+        if (moreText.classList.contains('active')) {
+            readMoreBtn.textContent = 'Read Less';
+        } else {
+            readMoreBtn.textContent = 'Read More';
+        }
+    });
+}
