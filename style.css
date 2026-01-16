@@ -26,6 +26,9 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    width: 100%;
+    overflow-x: hidden;
+    /* Fix horizontal scroll on mobile */
 }
 
 /* Custom Cursor */
@@ -534,9 +537,9 @@ span {
 
     .home-content {
         text-align: center;
-        /* Center text to prevent left cutoff */
         width: 100%;
-        /* Ensure container takes full width */
+        padding: 0 5%;
+        box-sizing: border-box;
     }
 
     .home-content h3 {
@@ -577,7 +580,9 @@ span {
 
     .about-content {
         text-align: center;
-        /* Center about text too */
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
     }
 
     .about-content h2 {
