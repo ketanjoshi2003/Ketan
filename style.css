@@ -309,71 +309,50 @@ span {
     display: flex;
     flex-wrap: wrap;
     gap: 5rem;
+    justify-content: center;
+    /* Center the whole block */
 }
 
 .skills-column {
     flex: 1 1 40rem;
+    text-align: center;
+    /* Center title */
 }
 
 .skills-column .title {
     font-size: 2.5rem;
-    margin: 0 0 1.5rem;
+    margin: 0 0 2.5rem;
 }
 
 .skills-box {
     position: relative;
-    border-left: .2rem solid var(--main-color);
+    /* Removed border-left for cleaner icon look */
 }
 
 .skills-content {
     position: relative;
-    padding-left: 2rem;
+    /* Removed padding-left */
 }
 
-.skills-content .progress {
-    padding: 1rem 0;
-}
-
-.skills-content .progress h3 {
-    font-size: 1.7rem;
+.skills-icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
 }
 
-.skills-content .progress h3 span {
+.skills-icons i {
+    font-size: 7rem;
+    color: var(--main-color);
+    transition: 0.3s;
+    cursor: default;
+}
+
+.skills-icons i:hover {
     color: var(--text-color);
-}
-
-.skills-content .progress .bar {
-    height: 2.5rem;
-    border-radius: .6rem;
-    border: .2rem solid var(--main-color);
-    padding: .5rem;
-    margin: 1rem 0;
-}
-
-.skills-content .progress .bar span {
-    display: block;
-    height: 100%;
-    border-radius: .3rem;
-    background: var(--main-color);
-}
-
-/* Specific widths for demo */
-.skills-content .progress:nth-child(1) .bar span {
-    width: 90%;
-}
-
-.skills-content .progress:nth-child(2) .bar span {
-    width: 85%;
-}
-
-.skills-content .progress:nth-child(3) .bar span {
-    width: 80%;
-}
-
-.skills-content .progress:nth-child(4) .bar span {
-    width: 75%;
+    text-shadow: 0 0 1rem var(--main-color);
+    transform: translateY(-5px);
 }
 
 /* Projects / Services Section */
@@ -497,19 +476,19 @@ span {
 
 @media (max-width: 991px) {
     .header {
-        padding: 2rem 3%;
+        padding: 2rem 5%;
     }
 
     section {
-        padding: 10rem 3% 2rem;
+        padding: 10rem 5% 2rem;
     }
 
     .services {
-        padding: 7rem 3% 2rem;
+        padding: 7rem 5% 2rem;
     }
 
     .footer {
-        padding: 2rem 3%;
+        padding: 2rem 5%;
     }
 }
 
@@ -529,6 +508,12 @@ span {
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
         display: none;
         /* hidden by default on mobile, toggled via JS */
+        box-sizing: border-box;
+        /* Ensure padding doesn't affect width */
+        max-height: 90vh;
+        /* Limit height to preventing off-screen overflow */
+        overflow-y: auto;
+        /* Enable scrolling if menu is too long */
     }
 
     .navbar.active {
@@ -539,10 +524,19 @@ span {
         display: block;
         font-size: 2rem;
         margin: 3rem 0;
+        text-align: center;
+        /* Center links for better focus */
     }
 
     .home {
         flex-direction: column;
+    }
+
+    .home-content {
+        text-align: center;
+        /* Center text to prevent left cutoff */
+        width: 100%;
+        /* Ensure container takes full width */
     }
 
     .home-content h3 {
@@ -553,6 +547,24 @@ span {
         font-size: 5rem;
     }
 
+    /* Constraint paragraph width to prevent edge clipping */
+    .home-content p {
+        max-width: 90%;
+        margin: 2rem auto 3rem;
+    }
+
+    .social-media {
+        display: flex;
+        justify-content: center;
+        /* Center icons */
+        width: 100%;
+    }
+
+    .social-media a {
+        margin: 3rem 1.5rem 3rem 1.5rem;
+        /* Balanced margins */
+    }
+
     .home-img {
         width: 70vw;
         height: 70vw;
@@ -561,6 +573,27 @@ span {
 
     .about {
         flex-direction: column-reverse;
+    }
+
+    .about-content {
+        text-align: center;
+        /* Center about text too */
+    }
+
+    .about-content h2 {
+        text-align: center;
+        /* Override specific left alignment */
+    }
+
+    /* Constraint about paragraph width too */
+    .about-content p {
+        max-width: 90%;
+        margin: 2rem auto 3rem;
+    }
+
+    .skills-column .title {
+        text-align: center;
+        /* Center skills title on mobile */
     }
 
     .about img {
@@ -595,6 +628,11 @@ span {
 @media (max-width: 450px) {
     html {
         font-size: 50%;
+    }
+
+    .header {
+        padding: 2rem 5%;
+        /* Consistent padding */
     }
 
     .contact form .input-box input {
