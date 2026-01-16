@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketan Joshi | Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Ketan Joshi, a Python Enthusiast and Full Stack Developer with expertise in Python, Java, C#, Kotlin, and more.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <header class="header">
+        <a href="#" class="logo">Ketan<span class="highlight">.</span></a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="home" id="home">
+            <div class="home-content">
+                <h3>Hello, It's Me</h3>
+                <h1>Ketan Joshi</h1>
+                <h3>And I'm a <span class="multiple-text"></span></h3>
+                <p>A passionate tech enthusiast from Ganpat University transforming ideas into digital reality through
+                    Python, Java, and modern web technologies.</p>
+
+                <div class="social-media">
+                    <a href="https://www.linkedin.com/in/ketan-joshi-223R/" style="--i:1;"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/ketanjoshi2003" style="--i:2;"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/ketanjoshi__/" style="--i:3;"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+
+                <a href="assets/Ketan_Joshi_CV.pdf" download class="btn">Download CV</a>
+            </div>
+
+            <div class="home-img">
+                <div class="glowing-circle">
+                    <span></span>
+                    <span></span>
+                    <div class="image">
+                        <!-- Placeholder for user image or an avatar -->
+                        <img src="https://ui-avatars.com/api/?name=Ketan+Joshi&background=0ef&color=fff&size=512"
+                            alt="Ketan Joshi">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="about-img">
+                <img src="https://ui-avatars.com/api/?name=Ketan+Joshi&background=random&size=512" alt="Ketan Joshi">
+            </div>
+
+            <div class="about-content">
+                <h2 class="heading">About <span>Me</span></h2>
+                <h3>Full Stack Developer</h3>
+                <p>I hold a BCA and MCA from <strong>Ganpat University, Kherva</strong>. My journey in tech has been
+                    driven by curiosity and code. I am a <strong>Python Enthusiast</strong> at heart, but my toolkit is
+                    vast.</p>
+                <p>I love building robust applications using <strong>Java, C#, Kotlin</strong> and frameworks like
+                    <strong>Android</strong> and <strong>.NET MVC</strong>. I believe in clean code and user-centric
+                    design.
+                </p>
+                <p class="more-text">
+                    Beyond coding, I am deeply interested in AI and automation. I enjoy solving complex problems and
+                    continuously learning new technologies to stay ahead in the fast-paced tech world. My goal is to
+                    create impactful digital solutions that solve real-world problems.
+                </p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <h2 class="heading">My <span>Skills</span></h2>
+
+            <div class="skills-row">
+                <div class="skills-column">
+                    <h3 class="title">Coding Skills</h3>
+
+                    <div class="skills-box">
+                        <div class="skills-content">
+                            <div class="progress">
+                                <h3>Python <span>90%</span></h3>
+                                <div class="bar"><span></span></div>
+                            </div>
+
+                            <div class="progress">
+                                <h3>Java <span>85%</span></h3>
+                                <div class="bar"><span></span></div>
+                            </div>
+
+                            <div class="progress">
+                                <h3>C# / .NET MVC <span>80%</span></h3>
+                                <div class="bar"><span></span></div>
+                            </div>
+
+                            <div class="progress">
+                                <h3>Kotlin / Android <span>75%</span></h3>
+                                <div class="bar"><span></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Can add professional skills or other categories here -->
+            </div>
+        </section>
+
+        <!-- Services/Projects Section -->
+        <section class="services" id="projects">
+            <h2 class="heading">My <span>Projects</span></h2>
+
+            <div class="services-container">
+                <!-- Projects will be dynamically loaded here by script.js -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <h2 class="heading">Contact <span>Me</span></h2>
+
+            <form action="#">
+                <div class="input-box">
+                    <input type="text" name="fullName" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-box">
+                    <input type="number" name="mobile" placeholder="Mobile Number" required>
+                    <input type="text" name="subject" placeholder="Email Subject" required>
+                </div>
+                <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                <input type="submit" value="Send Message" class="btn">
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2025 by Ketan Joshi | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
