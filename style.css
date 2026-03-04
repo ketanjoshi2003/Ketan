@@ -49,61 +49,6 @@ body {
     background-color: var(--main-color);
 }
 
-/* Home Section Cursor Followers */
-.cursor-followers {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.home #home .cursor-followers {
-    display: block;
-}
-
-.orb {
-    position: fixed;
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(1px);
-    box-shadow: 0 0 20px rgba(0, 238, 255, 0.6), 0 0 40px rgba(0, 238, 255, 0.3);
-    animation: float 3s ease-in-out infinite;
-}
-
-.orb-1 {
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 238, 255, 0.8), rgba(0, 238, 255, 0.2));
-    animation-delay: 0s;
-}
-
-.orb-2 {
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 238, 255, 0.6), rgba(0, 238, 255, 0.1));
-    animation-delay: 0.2s;
-}
-
-.orb-3 {
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 238, 255, 0.5), rgba(0, 238, 255, 0));
-    animation-delay: 0.4s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) translateX(0px);
-    }
-    50% {
-        transform: translateY(-20px) translateX(10px);
-    }
-}
-
 .cursor-outline {
     width: 30px;
     height: 30px;
