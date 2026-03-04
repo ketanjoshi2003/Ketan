@@ -21,6 +21,15 @@
 html {
     font-size: 62.5%;
     overflow-x: hidden;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 body {
@@ -43,15 +52,18 @@ section {
     left: 0;
     width: 100%;
     padding: 2rem 9%;
-    background: var(--bg-color);
+    background: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    transition: background 0.3s ease;
 }
 
 .header.sticky {
-    border-bottom: .1rem solid rgba(255, 255, 255, .2);
+    background: rgba(31, 36, 45, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .logo {
@@ -97,10 +109,10 @@ section {
 /* Premium Particle Network Canvas */
 #particle-canvas {
     position: absolute;
-    top: 0;
+    top: -8rem;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% + 8rem);
     z-index: 0;
     pointer-events: none;
 }
@@ -499,30 +511,66 @@ span {
         top: 100%;
         left: 0;
         width: 100%;
-        padding: 1rem 3%;
-        background: var(--bg-color);
-        border-top: .1rem solid rgba(0, 0, 0, .2);
-        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        display: none;
-        /* hidden by default on mobile, toggled via JS */
+        padding: 0 3%;
+        background: transparent;
+        border-top: none;
+        box-shadow: none;
         box-sizing: border-box;
-        /* Ensure padding doesn't affect width */
-        max-height: 90vh;
-        /* Limit height to preventing off-screen overflow */
-        overflow-y: auto;
-        /* Enable scrolling if menu is too long */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .navbar.active {
-        display: block;
+        max-height: 90vh;
+        opacity: 1;
+        padding: 1rem 3%;
+        transform: translateY(0);
     }
 
     .navbar a {
         display: block;
         font-size: 2rem;
-        margin: 3rem 0;
-        text-align: center;
-        /* Center links for better focus */
+        margin: 0.6rem 0 0.6rem auto;
+        padding: 0.6rem 2.5rem;
+        width: fit-content;
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease-out;
+    }
+
+    .navbar.active a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .navbar.active a:nth-child(1) {
+        transition-delay: 0.05s;
+    }
+
+    .navbar.active a:nth-child(2) {
+        transition-delay: 0.1s;
+    }
+
+    .navbar.active a:nth-child(3) {
+        transition-delay: 0.15s;
+    }
+
+    .navbar.active a:nth-child(4) {
+        transition-delay: 0.2s;
+    }
+
+    .navbar.active a:nth-child(5) {
+        transition-delay: 0.25s;
+    }
+
+    .navbar a {
+        text-align: right;
     }
 
     .home {

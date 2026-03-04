@@ -31,8 +31,10 @@
     // --- Resize ---
     function resize() {
         const rect = homeSection.getBoundingClientRect();
+        // Extra height to cover the header/nav area above the home section
+        const headerExtra = parseFloat(getComputedStyle(document.documentElement).fontSize) * 8; // 8rem
         width = rect.width;
-        height = rect.height;
+        height = rect.height + headerExtra;
         canvas.width = width * devicePixelRatio;
         canvas.height = height * devicePixelRatio;
         canvas.style.width = width + 'px';
