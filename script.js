@@ -239,13 +239,15 @@ window.onscroll = () => {
 /* Scroll Reveal */
 ScrollReveal({
     reset: true,
-    distance: '80px',
-    duration: 1000,
-    delay: 200
+    distance: '40px',
+    duration: 600,
+    delay: 100,
+    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 });
 
 ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img, .services-container, .services-box, .contact form', { origin: 'bottom' });
+ScrollReveal().reveal('.home-img, .services-container, .contact form', { origin: 'bottom' });
+ScrollReveal().reveal('.services-box', { origin: 'bottom', interval: 100 });
 ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
 ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
@@ -253,9 +255,9 @@ ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 if (document.querySelector('.multiple-text')) {
     const typed = new Typed('.multiple-text', {
         strings: ['Python Enthusiast', 'Full Stack Developer', 'Android Developer', '.NET MVC Developer'],
-        typeSpeed: 100,
-        backSpeed: 100,
-        backDelay: 1000,
+        typeSpeed: 50,
+        backSpeed: 40,
+        backDelay: 800,
         loop: true
     });
 }
@@ -328,7 +330,7 @@ async function fetchGitHubProjects() {
         });
 
         // Explicitly reveal the new elements
-        ScrollReveal().reveal('.services-box', { origin: 'bottom', interval: 200 });
+        ScrollReveal().reveal('.services-box', { origin: 'bottom', interval: 100 });
 
     } catch (error) {
         console.error('Error loading GitHub projects:', error);

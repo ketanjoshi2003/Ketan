@@ -70,7 +70,7 @@ section {
     font-size: 1.7rem;
     color: var(--text-color);
     margin-left: 4rem;
-    transition: .3s;
+    transition: color .2s ease-out;
 }
 
 .navbar a:hover,
@@ -151,7 +151,7 @@ span {
     font-size: 2rem;
     color: var(--main-color);
     margin: 3rem 1.5rem 3rem 0;
-    transition: .3s ease;
+    transition: all .2s ease-out;
 }
 
 .social-media a:hover {
@@ -170,7 +170,7 @@ span {
     color: var(--second-bg-color);
     letter-spacing: .1rem;
     font-weight: 600;
-    transition: .3s ease;
+    transition: box-shadow .2s ease-out;
 }
 
 .btn:hover {
@@ -342,7 +342,7 @@ span {
 .skills-icons i {
     font-size: 7rem;
     color: var(--main-color);
-    transition: 0.3s;
+    transition: all .2s ease-out;
     cursor: default;
 }
 
@@ -376,7 +376,7 @@ span {
     border-radius: 2rem;
     text-align: center;
     border: .2rem solid var(--bg-color);
-    transition: .3s ease;
+    transition: all .2s ease-out;
 }
 
 .services-box:hover {
@@ -452,7 +452,7 @@ span {
     padding: .8rem;
     background: var(--main-color);
     border-radius: .8rem;
-    transition: .3s ease;
+    transition: box-shadow .2s ease-out;
 }
 
 .footer-iconTop a:hover {
