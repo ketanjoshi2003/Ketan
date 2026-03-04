@@ -84,7 +84,54 @@ window.addEventListener("mousemove", function (e) {
             top: `${posY}px`
         }, { duration: 500, fill: "forwards" });
     }
+
+    // Cursor followers animation (only on home section)
+    const homeSection = document.querySelector('.home');
+    if (homeSection) {
+        const rect = homeSection.getBoundingClientRect();
+        // Only show followers when cursor is over home section
+        if (posY >= rect.top && posY <= rect.bottom) {
+            updateFollowers(posX, posY);
+        }
+    }
 });
+
+// Cursor followers with trailing effect
+const followerPositions = [
+    { x: 0, y: 0, delay: 0 },
+    { x: 0, y: 0, delay: 50 },
+    { x: 0, y: 0, delay: 100 }
+];
+
+let cursorX = 0;
+let cursorY = 0;
+
+window.addEventListener("mousemove", (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+});
+
+function updateFollowers(posX, posY) {
+    const cursorsFollowers = document.querySelector('.cursor-followers');
+    
+    if (!cursorsFollowers.hasChildNodes() || cursorsFollowers.children.length < 3) {
+        cursorsFollowers.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
+            const orb = document.createElement('div');
+            orb.classList.add('orb', `orb-${i + 1}`);
+            cursorsFollowers.appendChild(orb);
+        }
+    }
+
+    const orbs = cursorsFollowers.querySelectorAll('.orb');
+    orbs.forEach((orb, index) => {
+        const offsetX = (index + 1) * 15;
+        const offsetY = (index + 1) * 15;
+        
+        orb.style.left = `${posX - offsetX}px`;
+        orb.style.top = `${posY - offsetY}px`;
+    });
+}
 
 /* Contact Form Handler */
 const form = document.querySelector('form');
