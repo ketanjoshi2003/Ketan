@@ -1,4 +1,200 @@
-/* Toggle Icon Navbar */
+/* ========================================
+   Premium Particle Constellation Animation
+   ======================================== */
+(function () {
+    const canvas = document.getElementById('particle-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const homeSection = document.getElementById('home');
+
+    // Configuration
+    const CONFIG = {
+        particleCount: 80,
+        connectionDistance: 150,
+        particleMinSize: 1.2,
+        particleMaxSize: 3.5,
+        speed: 0.4,
+        mouseRadius: 180,
+        mouseRepulse: 0.08,
+        colors: {
+            primary: { r: 0, g: 238, b: 255 },     // #0ef  — cyan
+            secondary: { r: 100, g: 180, b: 255 },  // softer blue
+            tertiary: { r: 180, g: 100, b: 255 },   // violet accent
+        }
+    };
+
+    let particles = [];
+    let mouse = { x: -9999, y: -9999 };
+    let animationId = null;
+    let width, height;
+
+    // --- Resize ---
+    function resize() {
+        const rect = homeSection.getBoundingClientRect();
+        width = rect.width;
+        height = rect.height;
+        canvas.width = width * devicePixelRatio;
+        canvas.height = height * devicePixelRatio;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+
+    // --- Particle class ---
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.baseSize = CONFIG.particleMinSize + Math.random() * (CONFIG.particleMaxSize - CONFIG.particleMinSize);
+            this.size = this.baseSize;
+            this.vx = (Math.random() - 0.5) * CONFIG.speed * 2;
+            this.vy = (Math.random() - 0.5) * CONFIG.speed * 2;
+            this.pulseSpeed = 0.02 + Math.random() * 0.03;
+            this.pulseOffset = Math.random() * Math.PI * 2;
+            this.opacity = 0.3 + Math.random() * 0.6;
+
+            // Assign color type
+            const r = Math.random();
+            if (r < 0.55) this.color = CONFIG.colors.primary;
+            else if (r < 0.8) this.color = CONFIG.colors.secondary;
+            else this.color = CONFIG.colors.tertiary;
+        }
+
+        update(time) {
+            // Float movement
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Pulse size
+            this.size = this.baseSize + Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.8;
+
+            // Bounce off edges softly
+            if (this.x < 0) { this.x = 0; this.vx *= -1; }
+            if (this.x > width) { this.x = width; this.vx *= -1; }
+            if (this.y < 0) { this.y = 0; this.vy *= -1; }
+            if (this.y > height) { this.y = height; this.vy *= -1; }
+
+            // Mouse repulsion
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < CONFIG.mouseRadius && dist > 0) {
+                const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius;
+                this.vx += (dx / dist) * force * CONFIG.mouseRepulse;
+                this.vy += (dy / dist) * force * CONFIG.mouseRepulse;
+            }
+
+            // Gentle friction
+            this.vx *= 0.998;
+            this.vy *= 0.998;
+        }
+
+        draw() {
+            // Glow
+            ctx.beginPath();
+            const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+            grad.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity * 0.4})`);
+            grad.addColorStop(1, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`);
+            ctx.fillStyle = grad;
+            ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Core dot
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`;
+            ctx.fill();
+        }
+    }
+
+    // --- Draw connections ---
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < CONFIG.connectionDistance) {
+                    const alpha = (1 - dist / CONFIG.connectionDistance) * 0.25;
+                    const midR = (particles[i].color.r + particles[j].color.r) / 2;
+                    const midG = (particles[i].color.g + particles[j].color.g) / 2;
+                    const midB = (particles[i].color.b + particles[j].color.b) / 2;
+
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(${midR}, ${midG}, ${midB}, ${alpha})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    // --- Animate ---
+    let time = 0;
+    function animate() {
+        time++;
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle gradient overlay at bottom for blending with next section
+        const fadeGrad = ctx.createLinearGradient(0, height * 0.75, 0, height);
+        fadeGrad.addColorStop(0, 'rgba(31, 36, 45, 0)');
+        fadeGrad.addColorStop(1, 'rgba(31, 36, 45, 0.6)');
+        ctx.fillStyle = fadeGrad;
+        ctx.fillRect(0, height * 0.75, width, height * 0.25);
+
+        drawConnections();
+
+        for (const p of particles) {
+            p.update(time);
+            p.draw();
+        }
+
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // --- Initialise ---
+    function init() {
+        resize();
+        particles = [];
+        for (let i = 0; i < CONFIG.particleCount; i++) {
+            particles.push(new Particle());
+        }
+        if (animationId) cancelAnimationFrame(animationId);
+        animate();
+    }
+
+    // --- Events ---
+    window.addEventListener('resize', () => {
+        resize();
+        // Re-constrain particles to new bounds
+        for (const p of particles) {
+            if (p.x > width) p.x = width * Math.random();
+            if (p.y > height) p.y = height * Math.random();
+        }
+    });
+
+    homeSection.addEventListener('mousemove', (e) => {
+        const rect = homeSection.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+
+    homeSection.addEventListener('mouseleave', () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+    });
+
+    init();
+})();
+
+
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
