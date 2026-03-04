@@ -273,16 +273,10 @@ if (form) {
         const formData = new FormData(form);
         const fullName = formData.get('fullName');
         const email = formData.get('email');
-        const mobile = formData.get('mobile');
-        const subject = formData.get('subject');
         const message = formData.get('message');
 
-        const body = `Name: ${fullName}
-Email: ${email}
-Mobile: ${mobile}
-
-Message:
-${message}`;
+        const subject = `Message from ${fullName}`;
+        const body = `Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${message}`;
 
         // Construct mailto link
         const mailtoLink = `mailto:ketanjoshi2003@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -307,12 +301,15 @@ async function fetchGitHubProjects() {
             const projectBox = document.createElement('div');
             projectBox.classList.add('services-box');
 
-            // Determine icon based on language
+            // Determine icon based on language or repo name
             let iconClass = 'fa-brands fa-github';
-            if (repo.language) {
+            if (repo.name.toLowerCase() === 'coms2') {
+                iconClass = 'fa-brands fa-php';
+            } else if (repo.language) {
                 const lang = repo.language.toLowerCase();
                 if (lang.includes('python')) iconClass = 'fa-brands fa-python';
                 else if (lang.includes('java')) iconClass = 'fa-brands fa-java';
+                else if (lang.includes('php')) iconClass = 'fa-brands fa-php';
                 else if (lang.includes('html')) iconClass = 'fa-brands fa-html5';
                 else if (lang.includes('css')) iconClass = 'fa-brands fa-css3-alt';
                 else if (lang.includes('js') || lang.includes('javascript')) iconClass = 'fa-brands fa-js';
