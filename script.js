@@ -64,28 +64,6 @@ if (document.querySelector('.multiple-text')) {
     });
 }
 
-/* Custom Cursor */
-const cursorDot = document.querySelector("[data-cursor-dot]");
-const cursorOutline = document.querySelector("[data-cursor-outline]");
-
-window.addEventListener("mousemove", function (e) {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    if (cursorDot) {
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-    }
-
-    // specific animation for outline to follow with delay
-    if (cursorOutline) {
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    }
-});
-
 /* Contact Form Handler */
 const form = document.querySelector('form');
 if (form) {
